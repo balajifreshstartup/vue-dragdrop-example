@@ -1,16 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <DragDrop v-bind:listing="lists" v-on:update-listing="newListing"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import DragDrop from './components/DragDrop.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    DragDrop
+  },
+  data:function(){
+    return{
+      lists:[
+        {
+          id:1,
+          item:'List 1'
+        },
+        {
+          id:2,
+          item:'List 2'
+        },
+        {
+          id:3,
+          item:'List 3'
+        },
+        {
+          id:4,
+          item:'List 4'
+        }
+      ]
+    }
+  },
+  methods:{
+    newListing(newListData){
+      this.lists = newListData;
+    }
+  },
+  emits: ['update-listing'],
 }
 </script>
 
